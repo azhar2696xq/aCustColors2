@@ -1,0 +1,18 @@
+                _ShowChoice($hGUI, $idMemo, 2, $aCustColors1[0], "RGB Hex color of your choice ( #1 ): ")
+            Case $idRGBwA2
+                $aCustColors2[0] = 2
+                _ShowChoice($hGUI, $idMemo, 2, _ChooseColor_Mod_2($aCustColors2, 0x0080C0, 2, $hGUI)[0], "RGB Hex color of your choice ( #2 ): ")
+        EndSwitch
+    WEnd
+EndFunc   ;==>Example
+
+Func _ShowChoice($hGUI, $idMemo, $iType, $iChoose, $sMessage)
+    Local $sCr
+    If $iChoose <> -1 Then
+
+        If $iType = 0 Then ; convert COLORREF to RGB for this example
+            $sCr = Hex($iChoose, 6)
+            GUISetBkColor('0x' & StringMid($sCr, 5, 2) & StringMid($sCr, 3, 2) & StringMid($sCr, 1, 2), $hGUI)
+        Else
+            GUISetBkColor($iChoose, $hGUI)
+        EndIf
